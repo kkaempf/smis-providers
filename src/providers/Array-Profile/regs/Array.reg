@@ -1,0 +1,143 @@
+[OMC_StorageConfigurationService]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance method
+   unload: never
+   namespace: root/cimv2
+#
+[OMC_StoragePool]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance method
+   unload: never
+   namespace: root/cimv2
+#
+[OMC_LogicalDisk]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance
+   unload: never
+   namespace: root/cimv2
+#
+[OMC_StorageVolume]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance
+   unload: never
+   namespace: root/cimv2
+#
+[OMC_StorageExtent]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance
+   namespace: root/cimv2
+#
+[OMC_AllocatedFromStoragePool]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_BasedOn]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   unload: never
+   namespace: root/cimv2
+#
+[OMC_CompositeExtent]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance
+   namespace: root/cimv2
+#
+[OMC_CompositeExtentBasedOn]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_HostedStorageConfigurationService]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_HostedStoragePool]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_LogicalDiskDevice]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_StorageCapabilities]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance method
+   namespace: root/cimv2
+#
+[OMC_StorageConfigurationCapabilities]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_StorageConfigurationElementCapabilities]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_StorageElementCapabilities]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_StorageElementSettingData]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_StorageSettingWithHints]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance
+   namespace: root/cimv2
+#
+[OMC_StorageSettingsGeneratedFromCapabilities]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_StorageVolumeDevice]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_SystemStorageCapabilities]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_AssociatedComponentExtent]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#
+[OMC_AssociatedRemainingExtent]
+   provider: omc_smi_array
+   location: omc_smi_array
+   type: instance association
+   namespace: root/cimv2
+#

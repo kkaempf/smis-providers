@@ -1,0 +1,25 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_SystemStorageCapabilities
+// ==========================================================================
+[Version ("0.1.0"), Description (
+	"OMC_SystemStorageCapabilities extends CIM_StorageCapabilities."
+	"It is intended to store the capabilities associated with the"
+	"storage configuration service."),
+
+	Provider("cmpi:omc_smi_array")
+]
+class OMC_SystemStorageCapabilities : CIM_StorageCapabilities
+{
+};
+	  	

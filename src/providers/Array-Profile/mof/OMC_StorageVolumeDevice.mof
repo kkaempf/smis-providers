@@ -1,0 +1,31 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_StorageVolumeDevice
+// ==========================================================================
+[ Association, Aggregation, Composition, Version ( "0.1.0"),
+	Description("OMC_StorageVolumeDevice associates a Storage volume"
+	"with a computer system"),
+
+	Provider("cmpi:omc_smi_array")
+]
+class OMC_StorageVolumeDevice : CIM_SystemDevice
+{
+	[Aggregate, Override("GroupComponent"), Min(1), Max(1),
+		Description("The hosting computer system") ]
+	Linux_ComputerSystem REF GroupComponent;
+//	OMC_UnitaryComputerSystem REF GroupComponent;
+
+	[ Override("PartComponent"),
+		Description("The storage volume") ]
+	OMC_StorageVolume REF PartComponent;
+};

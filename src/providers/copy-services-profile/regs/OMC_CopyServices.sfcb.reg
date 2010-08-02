@@ -1,0 +1,24 @@
+[OMC_StorageReplicationCapabilities]
+   provider: omc_smi_snapshot
+   location: omc_smi_snapshot
+   type: instance
+   namespace: root/cimv2
+#
+[OMC_StorageReplicationElementCapabilities]
+   provider: omc_smi_snapshot
+   location: omc_smi_snapshot
+   type: association instance
+   namespace: root/cimv2
+#
+[OMC_StorageVolumeStorageSynchronized]
+   provider: omc_smi_snapshot
+   location: omc_smi_snapshot
+   type: association instance
+   namespace: root/cimv2
+#
+[OMC_LogicalDiskStorageSynchronized]
+   provider: omc_smi_snapshot
+   location: omc_smi_snapshot
+   type: association instance
+   namespace: root/cimv2
+#

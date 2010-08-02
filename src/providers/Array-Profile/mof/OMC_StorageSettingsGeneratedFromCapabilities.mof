@@ -1,0 +1,23 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_StorageSettingsGeneratedFromCapabilities
+// ==========================================================================
+[Association, Version ("0.1.0"), Description (
+	"Associate the generated storage settings with the capabilities"),
+
+	Provider("cmpi:omc_smi_array")
+]
+class OMC_StorageSettingsGeneratedFromCapabilities : CIM_StorageSettingsGeneratedFromCapabilities 
+{
+};
+	  	

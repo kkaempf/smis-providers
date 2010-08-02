@@ -1,0 +1,26 @@
+// Copyright (c) 2007 Novell Inc.  All rights reserved.
+// ==========================================================================
+//  OMC_AssociatedComponentExtent
+// ==========================================================================
+[ Association, Aggregation, Version ( "0.1.0"),
+	Description("OMC_AssociatedComponentExtent defines the capacity, "
+	"of the StoragePool that is not yet allocated from the StoragePool. "
+	"This capacity is remaining in the StoragePool for future allocation. "
+	"capacity collected in a StoragePool. The capacity represented by "
+	"StorageExtents associated to a StoragePool using this "	
+	"association shall not be also associated to that "
+	"StoragePool using the OMC_AssociatedComponentExtent "
+	"association."),	
+
+	Provider("cmpi:omc_smi_array")
+]
+class OMC_AssociatedRemainingExtent : CIM_AssociatedRemainingExtent
+{
+	[Aggregate, Override("GroupComponent"), Min(1), Max(1),
+		Description("The storage pool") ]
+	OMC_StoragePool REF GroupComponent;
+
+	[ Override("PartComponent"),
+		Description("The storage extent") ]
+	OMC_StorageExtent REF PartComponent;
+};

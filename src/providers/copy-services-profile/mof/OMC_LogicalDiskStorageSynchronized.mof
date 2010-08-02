@@ -1,0 +1,33 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved.
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html
+ |
+ |********************************************************************************/
+//  OMC_StorageSynchronized  -- Do we need this??
+//
+// ==================================================================
+   [Association, Description (
+       "Association between two instances of OMC_StorageVolume. "),
+	Provider("cmpi:omc_smi_snapshot") ]
+
+ class OMC_LogicalDiskStorageSynchronized : CIM_StorageSynchronized {
+
+
+      [Override ( "SystemElement" ), Description (
+          "SystemElement represents the Storage that is the source of "
+          "the replication.")]
+  OMC_LogicalDisk REF SystemElement;
+
+      [Override ( "SyncedElement" ), Description (
+          "SyncedElement represents the Storage that is the target of "
+          "the replication.")]
+  OMC_LogicalDisk REF SyncedElement;
+
+};

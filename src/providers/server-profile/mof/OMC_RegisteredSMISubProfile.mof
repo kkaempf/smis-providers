@@ -1,0 +1,24 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_RegisteredSMISubProfile
+// ==========================================================================
+[ Version ("0.1.0"),
+	Description("OMC_RegisteredSMISubProfile extends OMC_RegisteredSubProfile"),
+
+	Provider("cmpi:omc_smi_server") 
+]
+
+class OMC_RegisteredSMISubProfile : CIM_RegisteredSubProfile 
+{
+};
+	  	

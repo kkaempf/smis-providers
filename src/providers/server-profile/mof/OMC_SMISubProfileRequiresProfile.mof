@@ -1,0 +1,39 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_SMISubProfileRequiresProfile
+// ==========================================================================
+[Association, Version ("0.1.0"), Description (
+       "The OMC_SubProfileRequiresProfile association defines the "
+       "RegisteredProfile to which the referenced RegisteredSubprofile is "
+       "dependent."),
+
+	Provider("cmpi:omc_smi_server") 
+]
+
+class OMC_SMISubProfileRequiresProfile : CIM_SubProfileRequiresProfile 
+{
+
+      [Override ( "Antecedent" ), 
+       Min ( 1 ), 
+       Description ( 
+          "The RegisteredProfile that is referenced/required by the "
+          "subprofile." )]
+   CIM_RegisteredProfile REF Antecedent;
+
+      [Override ( "Dependent" ), 
+       Description ( 
+          "A RegisteredSubProfile that requires a scoping profile, "
+          "for context." )]
+   CIM_RegisteredSubProfile REF Dependent;
+};
+	  	

@@ -1,0 +1,37 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_ElementConformsToSMIProfile
+// ==========================================================================
+[Association, Version ("0.1.0"), Description (
+       "The OMC_ElementConformsToSMIProfile association defines the "
+       "RegisteredProfiles to which the referenced ManagedElement is "
+       "conformant."),
+
+	Provider("cmpi:omc_smi_server") 
+]
+
+class OMC_ElementConformsToSMIProfile : CIM_ElementConformsToProfile 
+{
+
+      [Override ( "ConformantStandard" ), Key, Description ( 
+          "The RegisteredProfile to which the ManagedElement conforms."
+           )]
+   CIM_RegisteredProfile REF ConformantStandard;
+
+      [Override ( "ManagedElement" ), Key, Description ( 
+          "The ManagedElement that conforms to the RegisteredProfile."
+           )]
+   CIM_ManagedElement REF ManagedElement;
+
+};
+	  	

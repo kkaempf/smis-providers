@@ -1,0 +1,81 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_StorageConfigurationService
+// ==========================================================================
+
+[Version ("0.1.0"), Description (
+	"OMC_StorageConfigurationService extends "
+	"CIM_StorageConfigurationService and adds some methods needed for "
+	"easier storage configuration."),
+	
+	Provider("cmpi:omc_smi_array")
+]
+
+class OMC_StorageConfigurationService : CIM_StorageConfigurationService 
+{
+		[Description (
+			"Does any initialization needed before operation can be done.  For "
+			"example it opens the EVMS engine if EVMS is being used as the "
+			"valume manager."),
+		ValueMap {
+		  	"0", "1..4294967295"},
+		Values {
+		   	"Success", "Open Error"} ]
+	uint32 OpenSession ();
+		
+		[Description (
+			"Does any cleanup needed when finished with operations.  For "
+			"example it closes the EVMS engine if EVMS is being used as the "
+			"valume manager."),
+		ValueMap {
+		  	"0", "1..4294967295"},
+		Values {
+		   	"Success", "Close Error"} ]
+	uint32 CloseSession ();
+		
+		[Description (
+			"Checks with the volume managers to see if there are new devices "
+			"that need to be accounted for.  If a new device is found it is "
+			"checked for existing partitions and file systems and the model "
+			"is updated with the information"),
+		ValueMap {
+		  	"0", "1..4294967295"},
+		Values {
+		   	"Success", "Volume Manager Error"} ]
+	uint32 ScanStorage (
+			[IN, OUT, Description (
+				"A flag that is set to true if changes were made")]
+			boolean Changed);
+		
+		[Description (
+			"Moves an extent from one storage pool to another and "
+			"fixes up the two pools to reflect the correct storage "
+			"amounts.  If the extent has been consumed then all "
+			"the pools and extents derived from it are updated."),
+		ValueMap {
+		  	"0", "1", "2", "3", "4"},
+		Values {
+		   	"Success", "Unknown source pool", "Unknow destination pool",
+		   	"Unknow extent", "Unable to update children"} ]
+	uint32 ChangeExtentPool(
+			[IN, Description (
+				"The pool the extent is coming from")]
+			CIM_StoragePool REF SrcPool,
+			[IN, Description (
+				"The pool where the extent will be placed")]
+			CIM_StoragePool REF DestPool,
+			[IN, Description (
+				"The extent that needs to be moved")]
+			CIM_StorageExtent REF Extent);
+};
+	  

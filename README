@@ -1,0 +1,81 @@
+SMIS-Providers README
+
+CONTENTS
+1. Introduction
+2. Instrumented Classes and Associations
+3. Requirements & Dependencies
+4. Configuration
+5. Known Issues
+
+1. Introduction
+The smis-providers contains the providers to instrument the Volumes & Snapshots on the Linux filesystem.
+These are based on SNIA's SMI-S v 1.2 Volume Management profile & Copy Services profile respectively.
+
+2. Instrumented Classes and Associations
+	2.1 OMC_CompositeExtent
+	2.2 OMC_LogicalDisk
+	2.3 OMC_StorageCapabilities
+	2.4 OMC_StorageConfigurationCapabilities
+	2.5 OMC_StorageConfigurationService
+	2.6 OMC_StorageExtent
+	2.7 OMC_StoragePool
+	2.8 OMC_StorageSettingWithHints
+	2.9 OMC_SystemStorageCapabilities
+	2.10 OMC_AllocatedFromStoragePool
+	2.11 OMC_BasedOn
+	2.12 OMC_CompositeExtentBasedOn
+	2.13 OMC_HostedStorageConfigurationService
+	2.14 OMC_HostedStoragePool
+	2.15 OMC_LogicalDiskDevice
+	2.16 OMC_StorageConfigurationElementCapabilities
+	2.17 OMC_StorageElementCapabilities
+	2.18 OMC_StorageElementSettingData
+	2.19 OMC_AssociatedComponentExtent
+	2.20 OMC_AssociatedRemainingExtent
+	2.21 OMC_StorageSettingsGeneratedFromCapabilities
+	2.22 OMC_StorageReplicationCapabilities
+	2.23 OMC_StorageReplicationElementCapabilities
+	2.24 OMC_StorageSynchronized
+	2.25 OMC_StorageVolume
+	2.26 OMC_StorageVolumeAllocatedFromStoragePool
+	2.27 OMC_StorageVolumeBasedOn
+	2.28 OMC_StorageVolumeDevice
+	2.29 OMC_StorageVolumeStorageElementSettingData
+
+3. Requirements & Dependencies
+    	3.1 autoconf
+    	3.2 automake
+	3.3 gcc
+	3.4 gcc-c++
+	3.5 libsblim-cmpiutil
+    	3.6 sblim-cmpi-base
+    	3.7 sblim-cmpi-devel
+    	3.8 sblim-cmpiutil-devel
+    	3.9 yast2-storage
+	3.10 yast2-storage-devel
+    	3.11 sblim-sfcb should be running
+
+4. Configuration
+For the provider to work correctly, the configuration file, i.e. smsetup.conf, should be located at "/etc" directory.
+A dummy file is already copied under /etc directory. Make neccessary changes to this file to reflect the storage configurations of the host system.
+
+5. Known Issues
+	4.1 ModifySynchronization (Resync & Rollback) for Snapshot Replica is not supported.
+	4.2 Snapshots can be only created on the same Storage Pool as the source volume.
+	4.3 Multiple InPools for creation on a Logical Disk/ Storage Volume is not supported.
+	4.4 Shrinking of Storage Pools is not supported.
+	4.5 Creation of following is not supported:
+		4.5.1 Concrete Storage Pool  from Concrete Storage Pool.
+		4.5.2 Storage Pool/volume  from Storage Extents.
+		4.5.3 Storage Volume from Primordial Storage Pool.
+
+
+
+
+
+
+
+
+
+
+

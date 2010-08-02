@@ -1,0 +1,30 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_StorageElementSettingData
+// ==========================================================================
+[ Association, Version ("0.1.0"),
+	Description("StorageElementSettingData associates the storage"
+	"settings with a storage volume or logical disk"),
+
+	Provider("cmpi:omc_smi_array")
+]
+class OMC_StorageElementSettingData : CIM_ElementSettingData
+{
+	[ Override("ManagedElement"),
+		Description("The logical disk") ]
+	OMC_LogicalDisk REF ManagedElement;
+
+	[ Override("SettingData"), Weak,
+		Description("The settings") ]
+	OMC_StorageSettingWithHints REF SettingData;
+};

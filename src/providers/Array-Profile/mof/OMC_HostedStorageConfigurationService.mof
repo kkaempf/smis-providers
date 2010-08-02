@@ -1,0 +1,31 @@
+/*******************************************************************************
+ |
+ | 	SMIS-Providers
+ | 	Copyright (c) [2008] Novell, Inc.
+ | 	All rights reserved. 
+ |
+ | This program and the accompanying materials
+ | are made available under the terms of the Eclipse Public License v1.0
+ | which accompanies this distribution, and is available at
+ | http://www.eclipse.org/legal/epl-v10.html 
+ |
+ |********************************************************************************/
+//  OMC_HostedStorageConfigurationService
+// ==========================================================================
+[ Association, Version ("0.1.0"),
+	Description("OMC_HostedStorageConfigurationService associates the storage"
+	"configuration service to the computer system"),
+
+	Provider("cmpi:omc_smi_array")
+]
+class OMC_HostedStorageConfigurationService : CIM_HostedService
+{
+	[ Override("Antecedent"), Min(1), Max(1),
+		Description("The hosting computer system") ]
+	Linux_ComputerSystem REF Antecedent;
+//	OMC_UnitaryComputerSystem REF Antecedent;
+
+	[ Override("Dependent"), Weak,
+		Description("The hosted storage configuration service") ]
+	OMC_StorageConfigurationService REF Dependent;
+};

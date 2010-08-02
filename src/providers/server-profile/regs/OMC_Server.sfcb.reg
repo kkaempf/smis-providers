@@ -1,0 +1,49 @@
+[OMC_RegisteredSMIProfile]
+   provider: omc_smi_server
+   location: omc_smi_server
+   type: instance
+   unload: never
+   namespace: root/cimv2 root/interop
+#
+[OMC_RegisteredSMISubProfile]
+   provider: omc_smi_server
+   location: omc_smi_server
+   type: instance
+   unload: never
+   namespace: root/cimv2 root/interop
+#
+[OMC_ElementConformsToSMIProfile]
+   provider: omc_smi_server
+   location: omc_smi_server
+   type: instance association
+   unload: never
+   namespace: root/cimv2 root/interop
+#
+[OMC_SMISubProfileRequiresProfile]
+   provider: omc_smi_server
+   location: omc_smi_server
+   type: instance association
+   unload: never
+   namespace: root/cimv2 root/interop
+#
+[OMC_SMIArraySoftware]
+   provider: omc_smi_server
+   location: omc_smi_server
+   type: instance
+   unload: never
+   namespace: root/cimv2 root/interop
+#
+[OMC_SMIVolumeManagementSoftware]
+   provider: omc_smi_server
+   location: omc_smi_server
+   type: instance
+   unload: never
+   namespace: root/cimv2 root/interop
+#
+[OMC_SMIElementSoftwareIdentity]
+   provider: omc_smi_server
+   location: omc_smi_server
+   type: instance association
+   unload: never
+   namespace: root/cimv2 root/interop
+#

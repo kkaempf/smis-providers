@@ -1,0 +1,41 @@
+-------------------------------------------------------------------
+Tue Jul 27 11:50:05 UTC 2010 - kkaempf@novell.com
+
+- Adapt to sblim-cmpi-devel 2.x prototypes
+- Adapt to libstorage as split-off from yast2-storage
+
+-------------------------------------------------------------------
+Fri Jan 30 13:07:00 CET 2009 - rkaur@suse.de
+
+- Added missing dependencies to the SPEC file 
+
+-------------------------------------------------------------------
+Fri Jan 23 10:58:24 CET 2009 - rkaur@suse.de
+
+- Added fix for Bug 467346 which takes care of ignoring association calls from other libraries. 
+
+-------------------------------------------------------------------
+Wed Jan 21 16:18:23 CET 2009 - rkaur@suse.de
+
+- Added a fix for bug 467974 to allow unregistering the provider during uninstallation. 
+
+-------------------------------------------------------------------
+Fri Oct 24 14:04:42 CEST 2008 - rkaur@suse.de
+
+- Added fixes for some bugs and changed the spec file to copy the sample CONF file to the DOC folder
+
+-------------------------------------------------------------------
+Mon Sep 15 17:26:03 CEST 2008 - rkaur@suse.de
+
+- Made changes to SPEC file to resolve dependencies mentioned in Bug : 426344
+
+-------------------------------------------------------------------
+Fri Sep 12 17:06:12 CEST 2008 - rkaur@suse.de
+
+- Changed the Makefile.am to accomodate the generation of only the .so and not versioned shared objects 
+
+-------------------------------------------------------------------
+Fri Sep 12 13:00:28 CEST 2008 - rkaur@suse.de
+
+-Initial checkin 
+
