@@ -64,10 +64,10 @@ void  OMC_EnumSSObjectPaths(
 			CMSetStatusWithChars(broker, rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 			goto Exit;
 		}
-//	en = broker->bft->enumInstanceNames(broker, ctx, oPath, rc);
-/*	if(broker->bft->enumInstanceNames)
+//	en = broker->bft->enumerateInstanceNames(broker, ctx, oPath, rc);
+/*	if(broker->bft->enumerateInstanceNames)
 	{
-		en = CBEnumInstanceNames(broker, ctx, oPath, rc); 
+		en = CBEnumerateInstanceNames(broker, ctx, oPath, rc); 
 		if(rc->rc != CMPI_RC_OK)
 		{
 			DebugMsg("Unable to enumInstanceName LD\n");
@@ -77,7 +77,7 @@ void  OMC_EnumSSObjectPaths(
 	}
 	else
 	{
-		DebugMsg("broker->bft->enumInstanceNames NULL\n");
+		DebugMsg("broker->bft->enumerateInstanceNames NULL\n");
 	
 		return ;
 	} 
@@ -105,7 +105,7 @@ void  OMC_EnumSSObjectPaths(
 		}
 		else if(no_of_volumes > 0)
 		{
-			en2 = broker->bft->enumInstanceNames(broker, ctx, oPath, rc);
+			en2 = broker->bft->enumerateInstanceNames(broker, ctx, oPath, rc);
 			if(rc->rc != CMPI_RC_OK)
 			{
 				DebugMsg("Unable to enumInstanceName LD\n");
@@ -197,7 +197,7 @@ void OMC_EnumSSInstances(
 	char **snapshot_volumes_list=NULL; 
 	int no_of_volumes=0, rv, i, k;
 	//Vijay
-	//broker->bft->enumInstanceNames = 0x2b6db2483EA3;	
+	//broker->bft->enumerateInstanceNames = 0x2b6db2483EA3;	
 
 	oPath = CMNewObjectPath(broker, CMGetCharPtr(CMGetNameSpace(op, rc)), className, rc);
 	if(CMIsNullObject(oPath))
@@ -207,7 +207,7 @@ void OMC_EnumSSInstances(
 		goto Exit;
 	}
 	DebugMsg("Inside EnumSSInstances 1\n");
-	//en = broker->bft->enumInstanceNames(broker, ctx, oPath, rc);
+	//en = broker->bft->enumerateInstanceNames(broker, ctx, oPath, rc);
 		/* Get the list of all target class object paths from the CIMOM. */ 
 	en = CBEnumInstanceNames(broker, ctx, oPath, NULL); 
 //	if(rc->rc != CMPI_RC_OK)
@@ -217,7 +217,7 @@ void OMC_EnumSSInstances(
 		CMSetStatusWithChars(broker, rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 		goto Exit;
 	}
-	/*if( broker->bft->enumInstanceNames )
+	/*if( broker->bft->enumerateInstanceNames )
 	{
 
 		en = CBEnumInstanceNames(broker, ctx, oPath, rc); 
@@ -230,7 +230,7 @@ void OMC_EnumSSInstances(
 	}
 	else
 	{
-			DebugMsg("broker->bft->enumInstanceNames\n");
+			DebugMsg("broker->bft->enumerateInstanceNames\n");
 			return;
 	} */
 		
@@ -257,7 +257,7 @@ void OMC_EnumSSInstances(
 		}
 		else if(no_of_volumes > 0)
 		{
-			en2 = broker->bft->enumInstanceNames(broker, ctx, oPath, rc);
+			en2 = broker->bft->enumerateInstanceNames(broker, ctx, oPath, rc);
 			if(rc->rc != CMPI_RC_OK)
 			{
 				DebugMsg("Unable to enumInstanceName LD\n");
@@ -514,7 +514,7 @@ void OMC_CreateSSInstances(
 					goto Exit;
 				} 				
 				
-				en = broker->bft->enumInstanceNames(broker, ctx, ldOP, rc);
+				en = broker->bft->enumerateInstanceNames(broker, ctx, ldOP, rc);
 				if(rc->rc != CMPI_RC_OK)
 				{
 					DebugMsg("Unable to enumInstanceName LD\n");
@@ -625,7 +625,7 @@ void OMC_CreateSSInstances(
 					CMSetStatusWithChars(broker, rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 					goto Exit;
 				}
-				en = broker->bft->enumInstanceNames(broker, ctx, ldOP, rc);
+				en = broker->bft->enumerateInstanceNames(broker, ctx, ldOP, rc);
 				if(rc->rc != CMPI_RC_OK)
 				{
 					DebugMsg("Unable to enumInstanceName LD\n");
@@ -761,7 +761,7 @@ CMPIStatus OMC_SS_ReturnSyncedElementsOPs(
 				CMSetStatusWithChars(broker, &rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 				goto Exit;
 			}
-			en = broker->bft->enumInstanceNames(broker, ctx, oPath, &rc);
+			en = broker->bft->enumerateInstanceNames(broker, ctx, oPath, &rc);
 			if(rc.rc != CMPI_RC_OK)
 			{
 				DebugMsg("Unable to enumInstanceName LD\n");
@@ -850,7 +850,7 @@ CMPIStatus OMC_SS_ReturnSourceElementOP(
 				CMSetStatusWithChars(broker, &rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 				goto Exit;
 			}
-			en = broker->bft->enumInstanceNames(broker, ctx, oPath, &rc);
+			en = broker->bft->enumerateInstanceNames(broker, ctx, oPath, &rc);
 			if(rc.rc != CMPI_RC_OK)
 			{
 				DebugMsg("Unable to enumInstanceName LD\n");
@@ -931,7 +931,7 @@ CMPIStatus OMC_SS_ReturnSyncedElementsInsts(
 				CMSetStatusWithChars(broker, &rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 				goto Exit;
 			}
-			en = broker->bft->enumInstances(broker, ctx, oPath, properties, &rc);
+			en = broker->bft->enumerateInstances(broker, ctx, oPath, properties, &rc);
 			if(rc.rc != CMPI_RC_OK)
 			{
 				DebugMsg("Unable to enumInstanceName LD\n");
@@ -1021,7 +1021,7 @@ CMPIStatus OMC_SS_ReturnSourceElementInst(
 				CMSetStatusWithChars(broker, &rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 				goto Exit;
 			}
-			en = broker->bft->enumInstances(broker, ctx, oPath, properties, &rc);
+			en = broker->bft->enumerateInstances(broker, ctx, oPath, properties, &rc);
 			if(rc.rc != CMPI_RC_OK)
 			{
 				DebugMsg("Unable to enumInstanceName LD\n");
@@ -1170,7 +1170,7 @@ void OMC_CreateSSObjectPaths(
 					goto Exit;
 				} 				
 				
-				en = broker->bft->enumInstanceNames(broker, ctx, ldOP, rc);
+				en = broker->bft->enumerateInstanceNames(broker, ctx, ldOP, rc);
 				if(rc->rc != CMPI_RC_OK)
 				{
 					DebugMsg("Unable to enumInstanceName LD\n");
@@ -1248,7 +1248,7 @@ void OMC_CreateSSObjectPaths(
 					CMSetStatusWithChars(broker, rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 					goto Exit;
 				}
-				en = broker->bft->enumInstanceNames(broker, ctx, ldOP, rc);
+				en = broker->bft->enumerateInstanceNames(broker, ctx, ldOP, rc);
 				if(rc->rc != CMPI_RC_OK)
 				{
 					DebugMsg("Unable to enumInstanceName LD\n");

@@ -50,7 +50,7 @@ void  OMC_CreateSRECObjectPaths(
 		CMSetStatusWithChars(broker, rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 		goto Exit;
 	}
-	en = broker->bft->enumInstanceNames(broker, ctx, oPath, rc);
+	en = broker->bft->enumerateInstanceNames(broker, ctx, oPath, rc);
 	if(rc->rc != CMPI_RC_OK)
 	{
 		DebugMsg("Unable to enumInstanceName SCS\n");
@@ -140,7 +140,7 @@ void OMC_CreateSRECInstances(
 		CMSetStatusWithChars(broker, rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 		goto Exit;
 	}
-	en = broker->bft->enumInstanceNames(broker, ctx, oPath, rc);
+	en = broker->bft->enumerateInstanceNames(broker, ctx, oPath, rc);
 	if(rc->rc != CMPI_RC_OK)
 	{
 		DebugMsg("Unable to enumInstanceName SCS\n");

@@ -461,7 +461,7 @@ CMPIStatus CopyServicesProviderAssociatorNames(
 					CMSetStatusWithChars(omc_csp_broker, &rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 					return rc;
 				}
-				en = omc_csp_broker->bft->enumInstanceNames(omc_csp_broker, ctx, oPath, &rc);
+				en = omc_csp_broker->bft->enumerateInstanceNames(omc_csp_broker, ctx, oPath, &rc);
 				if(rc.rc != CMPI_RC_OK)
 				{
 					DebugMsg("Unable to enumInstanceName SCS\n");
@@ -630,7 +630,7 @@ CMPIStatus CopyServicesProviderAssociators(
 					CMSetStatusWithChars(omc_csp_broker, &rc, CMPI_RC_ERR_FAILED, "CMPI_RC_ERR_FAILED");
 					return rc;
 				}
-				en = omc_csp_broker->bft->enumInstances(omc_csp_broker, ctx, oPath, properties, &rc);
+				en = omc_csp_broker->bft->enumerateInstances(omc_csp_broker, ctx, oPath, properties, &rc);
 				if(rc.rc != CMPI_RC_OK)
 				{
 					DebugMsg("Unable to enumInstance SCS\n");

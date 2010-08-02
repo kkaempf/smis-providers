@@ -277,7 +277,7 @@ int CopyServicesCreateReplica(
 		_SMI_TRACE(1,("inArgCount to CreateOrModifyElementFromStoragePool is %d",inArgCount));
 		outArgCount = CMGetArgCount(out2, pStatus);
 		_SMI_TRACE(1,("inArgCount to CreateOrModifyElementFromStoragePool is %d",outArgCount));
-		_SMI_TRACE(1,("cop  %u",*_BROKER->bft->enumInstanceNames));
+		_SMI_TRACE(1,("cop  %u",*_BROKER->bft->enumerateInstanceNames));
 		_SMI_TRACE(1,("cop  %u",*_BROKER->bft->invokeMethod));
 		//_SMI_TRACE(1,("cop  String class Nmae %s",CMObjectPathToString(cop,NULL)));
 		
@@ -320,7 +320,7 @@ int CopyServicesCreateReplica(
 			oPath = CMNewObjectPath(_BROKER, CMGetCharPtr(CMGetNameSpace(cop, pStatus)), 
 				"OMC_LogicalDisk", pStatus);
 
-			en = _BROKER->bft->enumInstanceNames(_BROKER, context, oPath, pStatus);
+			en = _BROKER->bft->enumerateInstanceNames(_BROKER, context, oPath, pStatus);
 			_SMI_TRACE(1,("CBEnumInstance ---- rc= %d",pStatus->rc));
 			if(pStatus->rc != CMPI_RC_OK)
 			{
@@ -336,7 +336,7 @@ int CopyServicesCreateReplica(
 			oPath = CMNewObjectPath(_BROKER, CMGetCharPtr(CMGetNameSpace(cop, pStatus)), 
 				"OMC_LogicalDisk", pStatus);
 
-			en = _BROKER->bft->enumInstanceNames(_BROKER, context, oPath, pStatus);
+			en = _BROKER->bft->enumerateInstanceNames(_BROKER, context, oPath, pStatus);
 			_SMI_TRACE(1,("CBEnumInstance ---- rc= %d",pStatus->rc));
 			if(pStatus->rc != CMPI_RC_OK)
 			{
