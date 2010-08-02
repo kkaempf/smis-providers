@@ -10164,7 +10164,7 @@ exit:
 	_SMI_TRACE(1,("Initialize() %s", (status.rc == CMPI_RC_OK)? "succeeded":"failed"));
 }
 
-static      void EnableIndications (CMPIIndicationMI* mi,
+static      CMPIStatus EnableIndications (CMPIIndicationMI* mi,
                                        const CMPIContext *ctx)
 {
         CMPIStatus status = {CMPI_RC_ERR_NOT_SUPPORTED, NULL};  /* Return status of CIM operations */
@@ -10176,10 +10176,10 @@ static      void EnableIndications (CMPIIndicationMI* mi,
         /* Finished. */
 exit:
         _SMI_TRACE(1,("EnableIndications() %s", (status.rc == CMPI_RC_OK)? "succeeded":"failed"));
-//        return status;
+        return status;
 }
 
-static      void DisableIndications (CMPIIndicationMI* mi,
+static      CMPIStatus DisableIndications (CMPIIndicationMI* mi,
                                        const CMPIContext *ctx)
 {
         CMPIStatus status = {CMPI_RC_ERR_NOT_SUPPORTED, NULL};  /* Return status of CIM operations */
@@ -10191,7 +10191,7 @@ static      void DisableIndications (CMPIIndicationMI* mi,
         /* Finished. */
 exit:
         _SMI_TRACE(1,("DisableIndications() %s", (status.rc == CMPI_RC_OK)? "succeeded":"failed"));
-  //      return status;
+        return status;
 }
 
 // ----------------------------------------------------------------------------
