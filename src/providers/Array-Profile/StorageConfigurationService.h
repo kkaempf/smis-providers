@@ -21,7 +21,7 @@
 #ifndef STORAGECONFIGURATIONSERVICE_H_
 #define STORAGECONFIGURATIONSERVICE_H_
 
-#include <y2storage/StorageInterface.h>
+#include <storage/StorageInterface.h>
 
 #ifdef __cplusplus
 extern "C" {

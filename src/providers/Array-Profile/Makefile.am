@@ -90,7 +90,7 @@ libomc_smi_array_la_SOURCES = \
 	LvmCopyServices.c
 
 ####libomc_smi_array_la_LIBADD = -lomc_cmpi -lomc_cbase -levms
-libomc_smi_array_la_LIBADD = -lsblim-cmpiutil -ly2storage
+libomc_smi_array_la_LIBADD = -lsblim-cmpiutil -lstorage
 
 libomc_smi_array_la_LDFLAGS = \
 	-avoid-version

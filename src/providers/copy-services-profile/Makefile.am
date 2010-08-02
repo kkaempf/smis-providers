@@ -96,7 +96,7 @@ libomc_smi_snapshot_la_SOURCES = \
 	StorageSynchronized.c
 
 ####libomc_smi_array_la_LIBADD = -lomc_cmpi -lomc_cbase -levms
-libomc_smi_snapshot_la_LIBADD = -lsblim-cmpiutil -ly2storage -lomc_smi_array -L../Array-Profile/.libs/.
+libomc_smi_snapshot_la_LIBADD = -lsblim-cmpiutil -lstorage -lomc_smi_array -L../Array-Profile/.libs/.
 
 libomc_smi_snapshot_la_LDFLAGS = \
 	-avoid-version

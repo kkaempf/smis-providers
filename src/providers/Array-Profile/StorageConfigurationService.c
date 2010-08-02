@@ -53,7 +53,7 @@ extern "C" {
 #include "StorageSetting.h"
 #include "LvmCopyServices.h"
 #include "CopyServicesExtrinsic.h"
-#include <y2storage/StorageInterface.h>
+#include <storage/StorageInterface.h>
 
 using namespace storage;
 

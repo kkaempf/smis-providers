@@ -50,7 +50,7 @@ extern "C" {
 #include "StorageConfigurationService.h"
 #include "StoragePool.h"
 #include "StorageCapability.h"
-#include "y2storage/StorageInterface.h"
+#include <storage/StorageInterface.h>
 
 using namespace storage;
 

@@ -42,7 +42,7 @@ extern "C" {
 }
 #endif
 
-#include <y2storage/StorageInterface.h>
+#include <storage/StorageInterface.h>
 #include "LvmCopyServices.h"
 #include "StorageConfigurationService.h"
 #include "StorageVolume.h"

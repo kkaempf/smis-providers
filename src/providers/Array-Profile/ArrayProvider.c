@@ -55,7 +55,7 @@ extern "C" {
 #include "StorageExtent.h"
 #include "StorageVolume.h"
 #include "StorageSetting.h"
-#include <y2storage/StorageInterface.h>
+#include <storage/StorageInterface.h>
 
 using namespace storage;
 
@@ -10156,7 +10156,7 @@ static void Initialize(
 
 	/* Do any general init stuff here */
 //	if(s == NULL)
-		s = createDefaultStorageInterface();
+		s = createStorageInterface(Environment(false));
 //	SCSNeedToScan = 1;
 
 	/* Finished. */

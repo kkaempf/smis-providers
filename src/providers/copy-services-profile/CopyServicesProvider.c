@@ -27,7 +27,7 @@ extern "C" {
 }
 #endif
 
-#include <y2storage/StorageInterface.h>
+#include <storage/StorageInterface.h>
 #include "CopyServicesProvider.h"
 #include "StorageReplicationCapabilities.h"
 #include "StorageReplicationElementCapabilities.h"
