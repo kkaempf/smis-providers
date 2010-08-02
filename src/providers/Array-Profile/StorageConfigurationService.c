@@ -250,7 +250,7 @@ static int LoadPersistentStorageObjects(
 		const char *ns)
 {
 	int rc = 0;
-	char * setupFileName = "/etc/smsetup.conf";
+	const char * setupFileName = "/etc/smsetup.conf";
 
 	cmpiutilFileModifier_CBS setupFileModifier = 
 						{
@@ -280,7 +280,7 @@ bool IsExtendedPartition(const char *name, char *disk)
 		_SMI_TRACE(0,("Error calling getContVolInfo for primordial extent, rc = %d", rc));
 		return 0;
 	}
-	if(rc = cVolInfo.type != DISK)
+	if(rc = cVolInfo.ctype != DISK)
 	{
 		_SMI_TRACE(0,("Error: Primordial extent is not a extended partition"));
 		return 0;
@@ -2506,7 +2506,7 @@ static int ProcessPartition(
 	const char *dummyName = partInfo.v.name.c_str();
 	_SMI_TRACE(1,("dummyName = %s", dummyName));
 
-	_SMI_TRACE(1,("partition Used by type = %d: name = %s", partInfo.v.usedByType, partInfo.v.usedByName.c_str()));
+	_SMI_TRACE(1,("partition Used by type = %d: name = %s", partInfo.v.usedByType, partInfo.v.usedByDevice.c_str()));
 //	if(partInfo.v.usedBy != UB_NONE)
 	if(partInfo.v.usedByType == UB_LVM || partInfo.v.usedByType == UB_MD)
 	{
@@ -2535,14 +2535,14 @@ static int ProcessPartition(
 							1);
 
 
-		_SMI_TRACE(1,("partition Used by type = %d: name = %s", partInfo.v.usedByType, partInfo.v.usedByName.c_str()));
+		_SMI_TRACE(1,("partition Used by type = %d: name = %s", partInfo.v.usedByType, partInfo.v.usedByDevice.c_str()));
 		// See if this region/dummy-extent is consumed by any container/pool
 		if (partInfo.v.usedByType == UB_LVM)
 		{
 			ContainerInfo vg_contInfo;
 			LvmVgInfo vgInfo;
 			_SMI_TRACE(1,("Calling getLvmVgInfo for partition/dummy extent consuming container"));
-			if(rc = s->getContLvmVgInfo(partInfo.v.usedByName, vg_contInfo, vgInfo))
+			if(rc = s->getContLvmVgInfo(partInfo.v.usedByDevice, vg_contInfo, vgInfo))
 			{	
 				_SMI_TRACE(1,("Error calling getLvmVgInfo for partition/dummy extent consuming container, rc = %d", rc));
 				goto exit;
@@ -2569,8 +2569,8 @@ static int ProcessPartition(
 			}
    			for(i = mdInfoList.begin(); i != mdInfoList.end(); ++i )
 			{
-				_SMI_TRACE(1,("Comparing MD %s with %s", partInfo.v.usedByName.c_str(), i->v.name.c_str()));
-				if(!strcasecmp(partInfo.v.usedByName.c_str(), i->v.name.c_str()))
+				_SMI_TRACE(1,("Comparing MD %s with %s", partInfo.v.usedByDevice.c_str(), i->v.name.c_str()));
+				if(!strcasecmp(partInfo.v.usedByDevice.c_str(), i->v.name.c_str()))
 				{
 					mdInfo = *i;
 					break;
@@ -2587,7 +2587,7 @@ static int ProcessPartition(
 			}
 			else
 			{
-				_SMI_TRACE(1,("Unable to get MdInfo for %s, rc = %d", volInfo.usedByName.c_str(), rc));
+				_SMI_TRACE(1,("Unable to get MdInfo for %s, rc = %d", volInfo.usedByDevice.c_str(), rc));
 				goto exit;
 			}
 			mdInfoList.clear();
@@ -2953,7 +2953,7 @@ static int ProcessMDRaid0Region(
 */
 		CMPIUint64 stripeChunkSize;
 		CMPIUint16 numStripes = 0;
-		stripeChunkSize = mdInfo.chunk * 1024;
+		stripeChunkSize = mdInfo.chunkSizeK;
 		char *token = strtok((char *)mdInfo.devices.c_str(), " ");
 		while(token != NULL)
 		{
@@ -2992,12 +2992,12 @@ static int ProcessMDRaid0Region(
 							1);
 
 		// See if this region/composite-extent is consumed by any container/pool
-		_SMI_TRACE(1,("RAID Used by = %d: name = %s", mdInfo.v.usedByType, mdInfo.v.usedByName.c_str()));
+		_SMI_TRACE(1,("RAID Used by = %d: name = %s", mdInfo.v.usedByType, mdInfo.v.usedByDevice.c_str()));
 		if (mdInfo.v.usedByType == (UsedByType)UB_LVM)
 		{
 			ContainerInfo contInfo;
 			LvmVgInfo vgInfo;
-			if (rc = s->getContLvmVgInfo(mdInfo.v.usedByName, contInfo, vgInfo))
+			if (rc = s->getContLvmVgInfo(mdInfo.v.usedByDevice, contInfo, vgInfo))
 			{
 				_SMI_TRACE(1,("Error calling getLvmVgInfo for region/dummy extent"));
 				goto exit;
@@ -3348,14 +3348,14 @@ static int ProcessMDRaid1Region(
 							childExt->size - 1,
 							1);
 
-		_SMI_TRACE(1,("RAID Used by = %d: name = %s", mdInfo.v.usedByType, mdInfo.v.usedByName.c_str()));
+		_SMI_TRACE(1,("RAID Used by = %d: name = %s", mdInfo.v.usedByType, mdInfo.v.usedByDevice.c_str()));
 		// See if this region/composite-extent is consumed by any container/pool
 		if (mdInfo.v.usedByType == (UsedByType)UB_LVM)
 		{
 			ContainerInfo contInfo;
 			LvmVgInfo vgInfo;
-			_SMI_TRACE(1,("Calling getLvmVgInfo for region/dummy extent %s", mdInfo.v.usedByName.c_str()));
-			if (rc = s->getContLvmVgInfo(mdInfo.v.usedByName, contInfo, vgInfo))
+			_SMI_TRACE(1,("Calling getLvmVgInfo for region/dummy extent %s", mdInfo.v.usedByDevice.c_str()));
+			if (rc = s->getContLvmVgInfo(mdInfo.v.usedByDevice, contInfo, vgInfo))
 			{
 				_SMI_TRACE(1,("Error calling getLvmVgInfo for region/dummy extent, rc = %d", rc));
 				goto exit;
@@ -3392,8 +3392,8 @@ static int ProcessMDRaid1Region(
 			}
 	   		for(i = mdInfoList.begin(); i != mdInfoList.end(); ++i )
 			{
-				_SMI_TRACE(1,("Comparing MD %s with %s", mdInfo.v.usedByName.c_str(), i->v.name.c_str()));
-				if(!strcasecmp(mdInfo.v.usedByName.c_str(), i->v.name.c_str()))
+				_SMI_TRACE(1,("Comparing MD %s with %s", mdInfo.v.usedByDevice.c_str(), i->v.name.c_str()));
+				if(!strcasecmp(mdInfo.v.usedByDevice.c_str(), i->v.name.c_str()))
 				{
 					md1Info = *i;
 					break;
@@ -3409,7 +3409,7 @@ static int ProcessMDRaid1Region(
 			}
 			else
 			{
-				_SMI_TRACE(1,("Unable to get MdInfo for %s, rc = %d", mdInfo.v.usedByName.c_str(), rc));
+				_SMI_TRACE(1,("Unable to get MdInfo for %s, rc = %d", mdInfo.v.usedByDevice.c_str(), rc));
 				goto exit;
 			}
 		}
@@ -3509,7 +3509,7 @@ static int ProcessMDRaid5Region(
 
 		CMPIUint64 stripeChunkSize;
 		CMPIUint16 numStripes = 0;
-		stripeChunkSize = mdInfo.chunk;
+		stripeChunkSize = mdInfo.chunkSizeK;
 		char *token = strtok((char *)mdInfo.devices.c_str(), " ");
 		while(token != NULL)
 		{
@@ -3518,7 +3518,7 @@ static int ProcessMDRaid5Region(
 			token = strtok( NULL , " ");
 		}
 
-		_SMI_TRACE(1,("Chunk size = %lld", stripeChunkSize));
+		_SMI_TRACE(1,("Chunk size = %lld k", stripeChunkSize));
 		_SMI_TRACE(1,("Num stripes = %d", numStripes));
 
 		compExtent->size = (numStripes-1) * childExt->size;
@@ -3554,7 +3554,7 @@ static int ProcessMDRaid5Region(
 		{
 			ContainerInfo contInfo;
 			LvmVgInfo vgInfo;
-			if (rc = s->getContLvmVgInfo(mdInfo.v.usedByName, contInfo, vgInfo))
+			if (rc = s->getContLvmVgInfo(mdInfo.v.usedByDevice, contInfo, vgInfo))
 			{
 				_SMI_TRACE(1,("Error calling getLvmVgInfo for region/dummy extent, rc = %d", rc));
 				goto exit;
@@ -4074,7 +4074,6 @@ static int ProcessContainer(
 {
 	int rc = 0;
 	CMPIUint64 contFreespace;
-	CMPIUint32 numRegions;
 	CMPIUint32 numConsumed;
 	StorageExtent *remaining = NULL;
 	StorageExtent *primary = NULL;
@@ -4085,9 +4084,8 @@ static int ProcessContainer(
 
 	
 	contName = contInfo.name.c_str();
-	contTotalSize = vgInfo.peCount * vgInfo.peSize * 1024;
-	contFreespace = vgInfo.peFree * vgInfo.peSize *1024;
-	numRegions = contInfo.volcnt;
+	contTotalSize = vgInfo.peCount * vgInfo.peSizeK;
+	contFreespace = vgInfo.peFree * vgInfo.peSizeK;
 	char *token = strtok((char *)vgInfo.devices.c_str(), " ");
 	numConsumed = 0;
 	while(token != NULL)
@@ -4256,7 +4254,7 @@ static int ProcessContainer(
 	primary = composite;
 
 	// Now handle case where we have LVM LV created from this container
-	if (numRegions > 0)
+	if (contInfo.type == LVM)
 	{
 		deque<LvmLvInfo> lvInfoList;
 		if(rc = s->getLvmLvInfo(contInfo.name, lvInfoList))
@@ -5643,8 +5641,9 @@ void SCSInvokeMethod(
 			_SMI_TRACE(0,("CreateOrModifyStoragePool(): Trying to get the instance ID"));
 			if (inPoolCopStr != NULL)
 			{
+				char *inPoolCopStr_cpy = strdup(inPoolCopStr);
 				_SMI_TRACE(1,("inPool[0] = %s", inPoolCopStr));
-				char *instanceID = strchr(inPoolCopStr, '=');
+				char *instanceID = strchr(inPoolCopStr_cpy, '=');
 				_SMI_TRACE(0,("CreateOrModifyStoragePool():instance ID = %s", instanceID));
 				if (instanceID)
 				{
@@ -5654,6 +5653,7 @@ void SCSInvokeMethod(
 					_SMI_TRACE(1,("inPool InstanceID = %s", instanceID));
 					inPool = PoolsFind(instanceID);
 				}
+				free(inPoolCopStr_cpy);
 				if (inPool == NULL)
 				{
 					_SMI_TRACE(0,("CreateOrModifyStoragePool(): Input pool object not found!!!"));
@@ -6353,10 +6353,10 @@ int SCSScanStorage(const char *ns, CMPIStatus *pStatus)
 							}
 				/*			if (volInfo.usedBy == (UsedByType)UB_LVM)
 							{
-								_SMI_TRACE(0,("Pool consumed by container %s", volInfo.usedByName.c_str()));
+								_SMI_TRACE(0,("Pool consumed by container %s", volInfo.usedByDevice.c_str()));
 								ContainerInfo vg_contInfo;
 								LvmVgInfo vgInfo;
-								if(rc = s->getContLvmVgInfo(volInfo.usedByName, vg_contInfo, vgInfo))
+								if(rc = s->getContLvmVgInfo(volInfo.usedByDevice, vg_contInfo, vgInfo))
 								{
 									_SMI_TRACE(1,("Error calling getLvmVgInfo for primordial extent consuming container, rc = %d", rc));
 									continue;
@@ -6424,10 +6424,10 @@ int SCSScanStorage(const char *ns, CMPIStatus *pStatus)
 						// See if this device has been consumed by a concrete pool (i.e. has container)
 						if (contInfo.usedByType == UB_LVM)
 						{
-							_SMI_TRACE(0,("Pool consumed by container %s", contInfo.usedByName.c_str()));
+							_SMI_TRACE(0,("Pool consumed by container %s", contInfo.usedByDevice.c_str()));
 							ContainerInfo vg_contInfo;
 							LvmVgInfo vgInfo;
-							if(rc = s->getContLvmVgInfo(contInfo.usedByName, vg_contInfo, vgInfo))
+							if(rc = s->getContLvmVgInfo(contInfo.usedByDevice, vg_contInfo, vgInfo))
 							{
 								_SMI_TRACE(1,("Error calling getLvmVgInfo for primordial extent consuming container, rc = %d", rc));
 								continue;
